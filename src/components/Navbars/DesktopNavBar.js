@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
+import clsx from 'clsx';
 
 const useStyles = createUseStyles({
     menuBar: {
@@ -11,14 +12,21 @@ const useStyles = createUseStyles({
             top: 0,
             right: '20px'
         },
-        borderBottom: 'solid 1px #e8e8e8',
         overflow: 'auto',
-        boxShadow: [
-            [0, 0, 30, 0, '#f3f1f1']
-        ],
         // display: 'flex',
         whiteSpace: 'nowrap',
         overflowX: 'auto',
+        // position: 'relative'
+        position: 'fixed',
+        width: '100%',
+        transition: 'all 150ms ease-in;'
+    },
+    showNav: {
+        backgroundColor: 'white',
+        boxShadow: [
+            [0, 0, 30, 0, '#f3f1f1']
+        ],
+        borderBottom: 'solid 1px #e8e8e8',
     },
     menu: {
         display: 'inline-block',
@@ -37,10 +45,14 @@ const useStyles = createUseStyles({
 
 function NavBar(props) {
     const classes = useStyles();
-    const { title, sections, active } = props;
+    const { title, sections, active, navTransparent } = props;
 
     return (
-        <nav className={classes.menuBar}>
+        <nav 
+            className={clsx(classes.menuBar, {
+                [classes.showNav]: !navTransparent
+            })}
+        >
            <div className={classes.title}>
                 <Typography.Title level={2}>
                     <UserOutlined /> 
@@ -62,7 +74,11 @@ function NavBar(props) {
 NavBar.propTypes = {
     sections: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
-    active: PropTypes.string.isRequired
+    active: PropTypes.string.isRequired,
+    navTransparent: PropTypes.bool,
+}
+NavBar.defaultProps = {
+    navTransparent: true
 }
 
 export default NavBar;

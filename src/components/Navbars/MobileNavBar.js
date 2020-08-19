@@ -4,25 +4,33 @@ import { createUseStyles } from 'react-jss';
 import { PropTypes } from 'prop-types';
 import { Typography, Button, Drawer } from 'antd';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 
 const useStyles = createUseStyles({
     menuBar: {
         paddingRight: '20px',
         paddingTop: '10px',
-        borderBottom: 'solid 1px #e8e8e8',
-        overflow: 'auto',
-        boxShadow: [
-            [0, 0, 30, 0, '#f3f1f1']
-        ],
         // display: 'flex',
         whiteSpace: 'nowrap',
         overflowX: 'auto',
+        position: 'fixed',
+        width: '100%',
+        overflowY: 'hidden',
+        transition: 'all 150ms ease-in;'
+        // backgroundColor: 'transparent'
     },
     title: {
         display: 'inline-block',
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
+    },
+    showNav: {
+        backgroundColor: 'white',
+        boxShadow: [
+            [0, 0, 30, 0, '#f3f1f1']
+        ],
+        borderBottom: 'solid 1px #e8e8e8',
     },
     navButton: {
         display: 'inline-block',
@@ -39,7 +47,7 @@ const useStyles = createUseStyles({
 });
 
 function MobileNavBar(props) {
-    const { title, sections } = props;
+    const { title, sections, navTransparent } = props;
     const classes = useStyles();
 
     const DrawerTitle = props => <Typography.Title level={4}><UserOutlined />{`   ${title}`}</Typography.Title>
@@ -51,7 +59,11 @@ function MobileNavBar(props) {
     }
 
     return(
-        <nav className={classes.menuBar}>
+        <nav 
+            className={clsx(classes.menuBar, {
+                [classes.showNav]: !navTransparent
+            })}
+        >
             <Drawer
                 title={<DrawerTitle />}
                 placement='left'
@@ -84,4 +96,8 @@ export default MobileNavBar;
 MobileNavBar.propTypes = {
     sections: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
+    navTransparent: PropTypes.bool,
+}
+MobileNavBar.defaultProps = {
+    navTransparent: true
 }
