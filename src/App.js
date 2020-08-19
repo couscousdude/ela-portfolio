@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Main from './components/Main';
+import DesktopNavBar from './components/Navbars/DesktopNavBar';
+import MobileNavBar from './components/Navbars/MobileNavBar'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import sections from './assets/sections';
+import mobileCheck from './utils/mobileCheck';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      { !mobileCheck()
+          ? (
+          <DesktopNavBar 
+            sections={sections}
+            active={'home'}
+          /> )
+          : (
+            <MobileNavBar
+            />
+          )
+      }
+      <Switch>
+        <Redirect from='/' to='/home' />
+        <Route path='/home' component={Main} />
+      </Switch>
+    </Router>
   );
 }
 
