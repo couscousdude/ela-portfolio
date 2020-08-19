@@ -1,8 +1,7 @@
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu, Typography } from 'antd';
 import { createUseStyles } from 'react-jss';
 import { PropTypes } from 'prop-types';
-import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 

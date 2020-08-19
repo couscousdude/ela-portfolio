@@ -7,10 +7,8 @@ import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
     menuBar: {
-        padding: {
-            top: 0,
-            right: '20px'
-        },
+        paddingRight: '20px',
+        paddingTop: '10px',
         borderBottom: 'solid 1px #e8e8e8',
         overflow: 'auto',
         boxShadow: [
@@ -28,7 +26,12 @@ const useStyles = createUseStyles({
     },
     navButton: {
         display: 'inline-block',
-        padding: 5
+        padding: {
+            top: 5,
+            left: 10,
+            bottom: 5
+        },
+        marginBottom: '10px',
     },
     link: {
         fontSize: 20
@@ -69,7 +72,8 @@ function MobileNavBar(props) {
             </span>
             <div className={classes.title}>
                 <Typography.Title level={2}>
-                    {title}
+                    <UserOutlined /> 
+                    {`   ${title}`}
                 </Typography.Title>
             </div>
         </nav>
