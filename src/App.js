@@ -15,14 +15,17 @@ function App() {
           <DesktopNavBar 
             sections={sections}
             active={'home'}
+            title='Youwen Wu'
           /> )
           : (
             <MobileNavBar
+              title='Youwen Wu'
+              sections={sections}
             />
           )
       }
       <Switch>
-        <Redirect from='/' to='/home' />
+        <Redirect from='/' to='/home' exact />
         <Route path='/home' component={Main} />
       </Switch>
     </Router>

@@ -3,6 +3,8 @@ import { Menu } from 'antd';
 import { createUseStyles } from 'react-jss';
 import { PropTypes } from 'prop-types';
 import { Typography } from 'antd';
+import { Link } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
 
 const useStyles = createUseStyles({
     menuBar: {
@@ -40,15 +42,16 @@ function NavBar(props) {
 
     return (
         <nav className={classes.menuBar}>
-            <div className={classes.title}>
+           <div className={classes.title}>
                 <Typography.Title level={2}>
-                    Youwen Wu
+                    <UserOutlined /> 
+                    {`   ${title}`}
                 </Typography.Title>
             </div>
             <div className={classes.menu}>
                 <Menu mode='horizontal' selectedKeys={[active]}>
                 { sections.map(item => (
-                    <Menu.Item key={item.key}>
+                    <Menu.Item key={item.key} component={Link} to={item.href}>
                         {item.title}
                     </Menu.Item>
                 ))}

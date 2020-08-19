@@ -1,3 +1,3 @@
 export default [
-    { title: 'Overview', key: 'home' }
+    { title: 'Overview', key: 'home', href: '/home' },
 ]
