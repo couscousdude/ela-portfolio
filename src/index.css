@@ -18,11 +18,5 @@ body {
 }
 
 html {
-  overflow-y: visible;
-  overflow-x: hidden;
-}
-
-body {
-  /* overflow-y: hidden; */
-  overflow-x: hidden;
+  overflow-y: scroll;
 }

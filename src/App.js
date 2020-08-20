@@ -17,38 +17,40 @@ function App() {
   const [navbarTransparent, setNavbarTransparent] = React.useState(true);
 
   return (
-    <ThemeProvider theme={theme}>
-      <ParallaxProvider>
-        <Router>
-          { !mobileCheck()
-              ? (
-              <DesktopNavBar 
-                sections={sections}
-                active={'home'}
-                title='Youwen Wu'
-                navTransparent={navbarTransparent}
-              /> )
-              : (
-                <MobileNavBar
-                  title='Youwen Wu'
+    <div className='root'>
+      <ThemeProvider theme={theme}>
+        <ParallaxProvider>
+          <Router>
+            { !mobileCheck()
+                ? (
+                <DesktopNavBar 
                   sections={sections}
+                  active={'home'}
+                  title='Youwen Wu'
                   navTransparent={navbarTransparent}
+                /> )
+                : (
+                  <MobileNavBar
+                    title='Youwen Wu'
+                    sections={sections}
+                    navTransparent={navbarTransparent}
+                  />
+                )
+            }
+            <Switch>
+              <Redirect from='/' to='/home' exact />
+              <Route path='/home' render={() => (
+                <Main
+                  onNavTop={setNavbarTransparent}
+                  title='Youwen Wu'
                 />
-              )
-          }
-          <Switch>
-            <Redirect from='/' to='/home' exact />
-            <Route path='/home' render={() => (
-              <Main
-                onNavTop={setNavbarTransparent}
-                title='Youwen Wu'
+              )}
               />
-            )}
-            />
-          </Switch>
-        </Router>
-      </ParallaxProvider>
-    </ThemeProvider>
+            </Switch>
+          </Router>
+        </ParallaxProvider>
+      </ThemeProvider>
+    </div>
   );
 }
 

@@ -19,7 +19,8 @@ const useStyles = createUseStyles({
         // position: 'relative'
         position: 'fixed',
         width: '100%',
-        transition: 'all 150ms ease-in;'
+        transition: 'all 150ms ease-in;',
+        zIndex: 1
     },
     showNav: {
         backgroundColor: 'white',
